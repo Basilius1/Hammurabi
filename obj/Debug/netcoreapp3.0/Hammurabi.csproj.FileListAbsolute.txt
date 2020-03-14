@@ -1,0 +1,11 @@
+C:\Users\Pasi_A\source\repos\Hammurabi\bin\Debug\netcoreapp3.0\Hammurabi.exe
+C:\Users\Pasi_A\source\repos\Hammurabi\bin\Debug\netcoreapp3.0\Hammurabi.deps.json
+C:\Users\Pasi_A\source\repos\Hammurabi\bin\Debug\netcoreapp3.0\Hammurabi.runtimeconfig.json
+C:\Users\Pasi_A\source\repos\Hammurabi\bin\Debug\netcoreapp3.0\Hammurabi.runtimeconfig.dev.json
+C:\Users\Pasi_A\source\repos\Hammurabi\bin\Debug\netcoreapp3.0\Hammurabi.dll
+C:\Users\Pasi_A\source\repos\Hammurabi\bin\Debug\netcoreapp3.0\Hammurabi.pdb
+C:\Users\Pasi_A\source\repos\Hammurabi\obj\Debug\netcoreapp3.0\Hammurabi.csprojAssemblyReference.cache
+C:\Users\Pasi_A\source\repos\Hammurabi\obj\Debug\netcoreapp3.0\Hammurabi.AssemblyInfoInputs.cache
+C:\Users\Pasi_A\source\repos\Hammurabi\obj\Debug\netcoreapp3.0\Hammurabi.AssemblyInfo.cs
+C:\Users\Pasi_A\source\repos\Hammurabi\obj\Debug\netcoreapp3.0\Hammurabi.dll
+C:\Users\Pasi_A\source\repos\Hammurabi\obj\Debug\netcoreapp3.0\Hammurabi.pdb
