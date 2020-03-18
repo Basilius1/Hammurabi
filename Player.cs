@@ -5,8 +5,50 @@ namespace Hammurabi
     class program
     {
 
-        class Player
+        public class Player
         {
+        public static void Main(string[] args)
+        {
+            Player myPlayer = new Player();
+
+            myPlayer.PopulationDefault = 100;
+            myPlayer.LandDefault = 1000;
+            myPlayer.FoodDefault = 2800;
+            myPlayer.PriceDefault = 20;
+
+            myPlayer = new Player(1, myPlayer.PopulationDefault, myPlayer.LandDefault, myPlayer.FoodDefault, myPlayer.PriceDefault);
+
+            myPlayer.printPlayer();
+
+            bool winner = true;
+
+            // loop for 10 years
+            for (int i = 0; i < 10; i++)
+            {
+                myPlayer.getInput(myPlayer);
+                if (myPlayer.checkEndGame(myPlayer))
+                {
+                    winner = false;
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("GAME OVER");
+                    Console.ResetColor();
+                        
+                    break;
+                }
+                else
+                {
+                    myPlayer.printReport();
+                    myPlayer.printPlayer();
+                }
+            }
+            if (winner)
+            {
+                Console.WriteLine("You have kept your people alive and 'well' for 10 years!");
+                Console.WriteLine("You are truly great!");
+                Console.WriteLine("CONGRATULATIONS");
+            }
+        }
+
             int yearNumber;
             int population;
             int land;
@@ -65,7 +107,7 @@ namespace Hammurabi
                     + "\nStored grain:              " + food
                     + "\nPrice of land:             " + priceOfLand
                     + "\n");
-             }
+            }
 
             public void printReport() //Print the report after each turn
             {
@@ -332,47 +374,6 @@ namespace Hammurabi
                     return true;
                 }
                 return false;
-            }
-        }
-        public static void Main(string[] args)
-        {
-            Player myPlayer = new Player();
-
-            myPlayer.PopulationDefault = 100;
-            myPlayer.LandDefault = 1000;
-            myPlayer.FoodDefault = 2800;
-            myPlayer.PriceDefault = 20;
-
-            myPlayer = new Player(1, myPlayer.PopulationDefault, myPlayer.LandDefault, myPlayer.FoodDefault, myPlayer.PriceDefault);
-
-            myPlayer.printPlayer();
-
-            bool winner = true;
-
-            // loop for 10 years
-            for (int i = 0; i < 10; i++)
-            {
-                myPlayer.getInput(myPlayer);
-                if (myPlayer.checkEndGame(myPlayer))
-                {
-                    winner = false;
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("GAME OVER");
-                    Console.ResetColor();
-                        
-                    break;
-                }
-                else
-                {
-                    myPlayer.printReport();
-                    myPlayer.printPlayer();
-                }
-            }
-            if (winner)
-            {
-                Console.WriteLine("You have kept your people alive and 'well' for 10 years!");
-                Console.WriteLine("You are truly great!");
-                Console.WriteLine("CONGRATULATIONS");
             }
         }
     }
