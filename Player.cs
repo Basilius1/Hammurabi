@@ -59,13 +59,13 @@ namespace Hammurabi
             public void printPlayer() //print player's variables
             {
                 Console.WriteLine("-------------------------------------------"
-                    + "\nYear:              " + yearNumber
-                    + "\nAcres of land:     " + land
-                    + "\nPopulation:        " + population
-                    + "\nStored grain:      " + food
-                    + "\nPrice of land:     " + priceOfLand
+                    + "\nYear:                      " + yearNumber
+                    + "\nAcres of land:             " + land
+                    + "\nPopulation:                " + population
+                    + "\nStored grain:              " + food
+                    + "\nPrice of land:             " + priceOfLand
                     + "\n");
-            }
+             }
 
             public void printReport() //Print the report after each turn
             {
@@ -195,7 +195,7 @@ namespace Hammurabi
             {
                 //update the remaining stats first, then calculate all the random elements
                 food -= nFood;
-                food -= nSeed;
+                //seed -= nSeed;
                 land += nLand;
 
                 food -= nLand * priceOfLand;
@@ -245,18 +245,18 @@ namespace Hammurabi
             }
             public void getInput(Player myPlayer)
             {
-                int nland = myPlayer.land;
-                int nfood = myPlayer.food;
+                int nland;
+                int nfood;
                 int nseed;
                 bool invalid = false;
                 string doubleCheck;
                 string inputLine;
-
                 do
                 {
                     int foodRemaining = myPlayer.getFood();
                     do
                     {
+                        Console.ForegroundColor = ConsoleColor.Green; /////////////////////////////////////////////////// color
                         Console.Write("How many acres do you wish to buy (Negative to sell)? ");
                         nland = validateIntegerInput();
                         if (myPlayer.getFood() < (nland * myPlayer.getPriceOfLand()))
@@ -264,6 +264,7 @@ namespace Hammurabi
                             Console.WriteLine($"You can't buy {nland} acres, you only have {myPlayer.getFood()} bushels!");
                         }
                     } while (myPlayer.getFood() < (nland * myPlayer.getPriceOfLand()));
+                    Console.ResetColor(); /////////////////////////////////////////////////////////////////////color
 
                     foodRemaining -= nland * myPlayer.getPriceOfLand();
                     do
@@ -311,7 +312,7 @@ namespace Hammurabi
                     Console.WriteLine($"You wish to buy {nland} acres, feed your people {nfood} bushels, and plant {nseed} seeds.");
                     Console.Write($"This will leave you with {foodRemaining} bushels, is that correct? Enter N to retry. ");
                     doubleCheck = Console.ReadLine();
-                } while (doubleCheck.ToUpper() == "N");
+                } while (doubleCheck == "N");
 
                 myPlayer.updatePlayer(nland, nfood, nseed);
             }
@@ -351,12 +352,14 @@ namespace Hammurabi
             // loop for 10 years
             for (int i = 0; i < 10; i++)
             {
-                //string inputText = Console.ReadLine();
-                // getInput(myPlayer); // C++
+                myPlayer.getInput(myPlayer);
                 if (myPlayer.checkEndGame(myPlayer))
                 {
                     winner = false;
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
                     Console.WriteLine("GAME OVER");
+                    Console.ResetColor();
+                        
                     break;
                 }
                 else
