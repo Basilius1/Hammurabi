@@ -7,47 +7,61 @@ namespace Hammurabi
 
         public class Player
         {
-        public static void Main(string[] args)
-        {
-            Player myPlayer = new Player();
-
-            myPlayer.PopulationDefault = 100;
-            myPlayer.LandDefault = 1000;
-            myPlayer.FoodDefault = 2800;
-            myPlayer.PriceDefault = 20;
-
-            myPlayer = new Player(1, myPlayer.PopulationDefault, myPlayer.LandDefault, myPlayer.FoodDefault, myPlayer.PriceDefault);
-
-            myPlayer.printPlayer();
-
-            bool winner = true;
-
-            // loop for 10 years
-            for (int i = 0; i < 10; i++)
+            public static void Main(string[] args)
             {
-                myPlayer.getInput(myPlayer);
-                if (myPlayer.checkEndGame(myPlayer))
+                // How should I make this better?
+                //
+                // Only few headlines into Main method. For debugging it's easy to comment out method.
+                //
+                // set up things up. Maybe use static methods. no need to instantiate class?
+                //
+                // for loop - replace it with CheckOutTenYears
+                //
+                // Every method inside class Program.
+                // variables under class Program
+                // Properties inside method. (and methods are inside class Program)
+                //
+                Player myPlayer = new Player();
+
+                myPlayer.PopulationDefault = 100; // 100
+                myPlayer.LandDefault = 1000; // 1000
+                myPlayer.FoodDefault = 2800; // 2800
+                myPlayer.PriceDefault = 20; // 20
+
+                myPlayer = new Player(1, myPlayer.PopulationDefault, myPlayer.LandDefault, myPlayer.FoodDefault, myPlayer.PriceDefault);
+
+                myPlayer.printPlayer();
+
+                bool winner = true;
+
+                // loop for 10 years
+                for (int i = 0; i < 10; i++)
                 {
-                    winner = false;
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("GAME OVER");
+                    myPlayer.getInput(myPlayer);
+                    if (myPlayer.checkEndGame(myPlayer))
+                    {
+                        winner = false;
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("GAME OVER");
+                        Console.ResetColor();
+
+                        break;
+                    }
+                    else
+                    {
+                        myPlayer.printReport();
+                        myPlayer.printPlayer();
+                    }
+                }
+                if (winner)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow; /////////////////////////////////////////////////////////////////////color
+                    Console.WriteLine("You have kept your people alive and 'well' for 10 years!");
+                    Console.WriteLine("You are truly great!");
+                    Console.WriteLine("CONGRATULATIONS");
                     Console.ResetColor();
-                        
-                    break;
-                }
-                else
-                {
-                    myPlayer.printReport();
-                    myPlayer.printPlayer();
                 }
             }
-            if (winner)
-            {
-                Console.WriteLine("You have kept your people alive and 'well' for 10 years!");
-                Console.WriteLine("You are truly great!");
-                Console.WriteLine("CONGRATULATIONS");
-            }
-        }
 
             int yearNumber;
             int population;
@@ -298,7 +312,7 @@ namespace Hammurabi
                     int foodRemaining = myPlayer.getFood();
                     do
                     {
-                        Console.ForegroundColor = ConsoleColor.Green; /////////////////////////////////////////////////// color
+                        Console.ForegroundColor = ConsoleColor.Yellow; /////////////////////////////////////////////////// color
                         Console.Write("How many acres do you wish to buy (Negative to sell)? ");
                         nland = validateIntegerInput();
                         if (myPlayer.getFood() < (nland * myPlayer.getPriceOfLand()))
@@ -306,11 +320,12 @@ namespace Hammurabi
                             Console.WriteLine($"You can't buy {nland} acres, you only have {myPlayer.getFood()} bushels!");
                         }
                     } while (myPlayer.getFood() < (nland * myPlayer.getPriceOfLand()));
-                    Console.ResetColor(); /////////////////////////////////////////////////////////////////////color
+
 
                     foodRemaining -= nland * myPlayer.getPriceOfLand();
                     do
                     {
+                        Console.ForegroundColor = ConsoleColor.Green; /////////////////////////////////////////////////// color
                         Console.Write("How many bushels do you wish to feed your people? ");
                         nfood = validateIntegerInput();
                         if (nfood < 0)
@@ -332,6 +347,7 @@ namespace Hammurabi
                     foodRemaining -= nfood;
                     do
                     {
+                        Console.ForegroundColor = ConsoleColor.DarkYellow; /////////////////////////////////////////////////// color
                         Console.Write("How many acres do you wish to plant with seed? ");
                         nseed = validateIntegerInput();
                         if (nseed < 0)
@@ -350,6 +366,7 @@ namespace Hammurabi
                         }
                     } while (invalid);
 
+                    Console.ResetColor(); /////////////////////////////////////////////////////////////////////color
                     foodRemaining -= nseed;
                     Console.WriteLine($"You wish to buy {nland} acres, feed your people {nfood} bushels, and plant {nseed} seeds.");
                     Console.Write($"This will leave you with {foodRemaining} bushels, is that correct? Enter N to retry. ");
